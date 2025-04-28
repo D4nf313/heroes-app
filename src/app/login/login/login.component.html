@@ -1,1 +1,29 @@
-<p>login works!</p>
+<!-- login.component.html -->
+<div class="login-container">
+  <nz-card [nzTitle]="'Login'" >
+    <form #loginForm="ngForm">
+      <!-- Usuario -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" for="username">Usuario</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input nz-input id="username"  name="username" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Contraseña -->
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" for="password">Contraseña</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input nz-input id="password" type="password"  name="password" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Botón de enviar -->
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" [disabled]="!loginForm.form.valid">Ingresar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-card>
+</div>

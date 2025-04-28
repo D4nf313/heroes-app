@@ -1,0 +1,16 @@
+/* login.component.css */
+.login-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100vh;           /* Utiliza toda la altura de la ventana */
+  padding: 0 20px;         /* Añade un pequeño padding para no tocar los bordes */
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2); 
+
+}
+
+nz-card {
+  width: 100%;
+  max-width: 400px; /* Ajusta el tamaño máximo del formulario */
+  padding: 20px;
+}
