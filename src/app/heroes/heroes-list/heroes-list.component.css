@@ -1,0 +1,9 @@
+/* Estilo general para la página */
+.container{
+  padding: 15px;
+  margin-left: 25px;
+}
+.container-search {
+display: flex;
+}
+
