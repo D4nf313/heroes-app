@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'heroes',
-    loadChildren: () => import('./heroes/heroes.routes'), 
+    path: 'personajes',
+    loadChildren: () => import('./heroes/personajes.routes'),
   },
 ];

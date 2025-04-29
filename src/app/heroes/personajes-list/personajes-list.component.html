@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Bienvenido,</h1>
+  <p>Aqui puedes ver todos los personjaes de la serie Rick and Morty</p>
+  <div class="table-operations">
+    <button nz-button (click)="sortByName()">Sort by Name</button>
+    <button nz-button (click)="resetFilters()">Clear filters</button>
+    <button nz-button (click)="resetSortAndFilters()">
+      Clear filters and sorters
+    </button>
+  </div>
+  <nz-table
+    #filterTable
+    [nzData]="listOfData()"
+    nzTableLayout="fixed"
+    [nzPageSize]="10"
+    [nzTotal]="total()"
+    (nzPageIndexChange)="onPageIndexChange($event)"
+  >
+    <thead>
+      <tr>
+        <th
+          [(nzSortOrder)]="column.sortOrder"
+          [nzSortFn]="column.sortFn"
+          *ngFor="let column of listOfColumns()"
+        >
+          {{ column.name }}
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let character of filterTable.data">
+        <td>{{ character.name }}</td>
+        <td>{{ character.species }}</td>
+        <td>{{ character.gender }}</td>
+        <td>{{ character.status }}</td>
+        <td>
+          <button nz-button nzType="primary" (click)="viewDetails(character.id)">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
