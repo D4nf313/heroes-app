@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -10,6 +10,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
   selector: 'app-login',
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     NzFormModule,
     NzInputModule,
     NzButtonModule,
@@ -24,8 +25,8 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
 
   loginForm!: FormGroup;
-  recaptchaCompleted = false;
-  recaptchaToken: string | null = null;
+  recaptchaCompleted = signal(false);
+  recaptchaToken = signal<string | null>(null);
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -36,16 +37,16 @@ export class LoginComponent {
   onCaptchaResolved(token: string | null) {
     if (token) {
       console.log('reCAPTCHA resuelto con token:', token);
-      this.recaptchaCompleted = true;
-      this.recaptchaToken = token;
+      this.recaptchaCompleted.set(true);
+      this.recaptchaToken.set(token);
     } else {
       console.log('reCAPTCHA falló o expiró');
-      this.recaptchaCompleted = false;
-      this.recaptchaToken = null;
+      this.recaptchaCompleted.set(false);
+      this.recaptchaToken.set(null);
     }
   }
   onSubmit() {
-    if (this.loginForm.invalid || !this.recaptchaCompleted) {
+    if (this.loginForm.invalid || !this.recaptchaCompleted()) {
       console.log('Formulario inválido o captcha no resuelto');
       return;
     }

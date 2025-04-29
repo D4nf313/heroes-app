@@ -1,12 +1,12 @@
 <!-- login.component.html -->
 <div class="login-container">
   <nz-card [nzTitle]="'Login'">
-    <form #loginForm="ngForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Usuario -->
       <nz-form-item>
         <nz-form-label [nzSpan]="6" for="username">Usuario</nz-form-label>
         <nz-form-control [nzSpan]="14">
-          <input nz-input id="username" name="username" required />
+          <input nz-input id="username" formControlName="username" />
         </nz-form-control>
       </nz-form-item>
 
@@ -18,8 +18,7 @@
             nz-input
             id="password"
             type="password"
-            name="password"
-            required
+            formControlName="password"
           />
         </nz-form-control>
       </nz-form-item>
@@ -36,7 +35,11 @@
       <!-- Botón de enviar -->
       <nz-form-item>
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <button nz-button nzType="primary" [disabled]="!loginForm.form.valid">
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="!loginForm.valid || !recaptchaCompleted()"
+          >
             Ingresar
           </button>
         </nz-form-control>
