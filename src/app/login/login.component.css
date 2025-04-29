@@ -5,12 +5,17 @@
   align-items: center;     /* Centra verticalmente */
   height: 100vh;           /* Utiliza toda la altura de la ventana */
   padding: 0 20px;         /* Añade un pequeño padding para no tocar los bordes */
-  background: linear-gradient(to right, #f5f7fa, #c3cfe2); 
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+
+}
+.text-center {
+  text-align: center;
 
 }
 
-nz-card {
-  width: 100%;
-  max-width: 400px; /* Ajusta el tamaño máximo del formulario */
-  padding: 20px;
+.custom-card {
+padding: 25px;
+border-radius: 15px;
+
 }
+

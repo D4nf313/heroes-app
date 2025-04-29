@@ -13,6 +13,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { LoginService } from '../services/login.service';
 import { AlertService } from '../services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
   private alertService = inject(AlertService);
+  private router = inject(Router);
   loginForm!: FormGroup;
   recaptchaCompleted = signal(false);
   recaptchaToken = signal<string | null>(null);
@@ -63,11 +65,10 @@ export class LoginComponent {
       .subscribe((isValidate: boolean) => {
         if (isValidate) {
           this.alertService.showToast('Inicio de sesión exitoso');
-
-
-
+          setTimeout(() => {
+            this.router.navigate(['personajes/list']);
+          }, 2000); 
         }
       });
- 
   }
 }

@@ -1,6 +1,6 @@
 <!-- login.component.html -->
 <div class="login-container">
-  <nz-card [nzTitle]="'Login'">
+  <nz-card [nzTitle]="'Iniciar Sesión'" class="text-center custom-card" >
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Usuario -->
       <nz-form-item>
@@ -34,7 +34,7 @@
       </nz-form-item>
       <!-- Botón de enviar -->
       <nz-form-item>
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <nz-form-control [nzSpan]="14" [nzOffset]="5">
           <button
             nz-button
             nzType="primary"
