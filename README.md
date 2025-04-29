@@ -1,59 +1,105 @@
-# HeroesApp
+HeroesApp
+HeroesApp es una aplicación web desarrollada con Angular 19, que utiliza tecnologías modernas y mejores prácticas para proporcionar una experiencia interactiva, con autenticación de usuario, integración de reCAPTCHA, y consumo de API externa (Rick and Morty API) el contenido esdta en la rama de develop.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+Características
+Angular 19: Aprovechando las últimas características de la versión 19.
 
-## Development server
+Ng Zorro Ant Design: Biblioteca de componentes basada en Ant Design, usada para crear una UI moderna y profesional.
 
-To start a local development server, run:
+reCAPTCHA: Implementación de Google reCAPTCHA para proteger los formularios de login.
 
-```bash
+SweetAlert2: Librería para mostrar alertas interactivas y elegantes.
+
+Lazy Loading: Implementación de carga perezosa (lazy loading) para mejorar el rendimiento de la aplicación.
+
+Modularización: La aplicación está organizada de manera modular, lo que facilita su mantenimiento y escalabilidad.
+
+Pipe de Fecha: Se usa un pipe para formatear fechas en un componente de detalle.
+
+Servicios Aislados: Los servicios están aislados para garantizar una buena separación de responsabilidades y mejorar la mantenibilidad.
+
+Tablas de Datos: Se utiliza un componente de tabla de Ng Zorro para mostrar datos en un formato estructurado.
+
+Pruebas con Jasmine: Se han realizado pruebas unitarias usando Jasmine para asegurar el correcto funcionamiento de la aplicación.
+
+Funcionalidades
+Login: La aplicación cuenta con una pantalla de login. Las credenciales predeterminadas son:
+
+Usuario: admin@admin.com
+
+Contraseña: Admin
+
+Consumo de API: Al iniciar sesión, la aplicación consume la API de Rick and Morty para obtener información relevante sobre los personajes.
+
+Paginación de Personajes: La aplicación muestra todos los personajes de Rick and Morty paginados, permitiendo navegar entre las páginas para ver más personajes.
+
+Detalle del Personaje: Al hacer clic en un personaje, se muestra una tarjeta (card) con el resumen de la información del personaje, incluida su foto.
+
+Diseño Responsivo: Utiliza el diseño basado en Ng Zorro Ant Design para tener una interfaz moderna, con tablas, botones, y formularios bien estructurados.
+
+Modularización: Los módulos están divididos de manera lógica para facilitar la expansión y mantenimiento del proyecto. Cada módulo tiene sus propios componentes, servicios y rutas.
+
+Lazy Loading: Los módulos de la aplicación se cargan bajo demanda para mejorar el tiempo de carga inicial de la app.
+
+Pipe de Fecha: Se usa un pipe para mostrar fechas en formato adecuado dentro de un componente de detalle.
+
+Tecnologías Utilizadas
+@angular/animations: ^19.1.0
+
+@angular/common: ^19.1.0
+
+@angular/compiler: ^19.1.0
+
+@angular/core: ^19.1.0
+
+@angular/forms: ^19.1.0
+
+@angular/platform-browser: ^19.1.0
+
+@angular/platform-browser-dynamic: ^19.1.0
+
+@angular/router: ^19.1.0
+
+ng-recaptcha: ^13.2.1
+
+ng-zorro-antd: ^19.2.2
+
+rxjs: ~7.8.0
+
+sweetalert2: ^11.19.1
+
+tslib: ^2.3.0
+
+zone.js: ~0.15.0
+
+Jasmine: Para pruebas unitarias.
+
+Cómo Correr la Aplicación
+Requisitos
+Node.js: Asegúrate de tener instalada una versión de Node.js compatible con Angular (recomendado: 16.x.x o superior).
+
+Angular CLI: Asegúrate de tener instalada la herramienta de línea de comandos de Angular (@angular/cli).
+
+Pasos para la ejecución:
+Clona el repositorio:
+
+bash
+Copiar
+Editar
+git clone <URL_DEL_REPOSITORIO>
+Instalar dependencias: Navega a la carpeta del proyecto y ejecuta:
+
+
+npm install
+Correr la aplicación en modo desarrollo: Para iniciar el servidor de desarrollo, ejecuta:
+
+
 ng serve
-```
+Abrir en el navegador: Abre el navegador y navega a http://localhost:4200.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Pruebas
+La aplicación incluye pruebas unitarias utilizando Jasmine. Para ejecutar las pruebas, puedes usar el siguiente comando:
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
 ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este comando ejecutará las pruebas unitarias y generará un informe en la terminal.
