@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Router, RouterLink} from '@angular/router';
 
 interface ColumnItem {
   name: string;
@@ -29,12 +30,14 @@ interface ColumnItem {
     NzPaginationModule,
     NzButtonModule,
     NzIconModule,
+    RouterLink
   ],
   templateUrl: './personajes-list.component.html',
   styleUrl: './personajes-list.component.css',
 })
 export class PersonajesListComponent {
   private pjService = inject(RickAndMortyService);
+  private router = inject(Router);
   listOfData = signal<CharacterSimple[]>([]); // Signal para los datos
   total = signal<number>(0); // Signal para el total de elementos
   currentPage = signal<number>(1); // Signal para la página actual
@@ -126,9 +129,10 @@ export class PersonajesListComponent {
     this.listOfData.set([...this.listOfData()]); // Actualizar los datos si es necesario
   }
 
-  viewDetails(idpj:number): void {
-    console.log('Detalles de:', idpj);
-    // Aquí podrías mostrar un modal o redirigir a una página con los detalles
+  goToDetail(characterId: number): void {
+    this.router.navigate(['personajes/detail', characterId]);
   }
+
+
 
 }

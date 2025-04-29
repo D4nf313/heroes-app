@@ -1,0 +1,11 @@
+@if (character()) {
+<nz-card [nzTitle]="character()!.name" style="width: 500px; margin-top: 16px">
+  <img nz-card-cover [src]="character()!.image" [alt]="character()!.name" />
+  <p><strong>Species:</strong> {{ character()!.species }}</p>
+  <p><strong>Gender:</strong> {{ character()!.gender }}</p>
+  <p><strong>Status:</strong> {{ character()!.status }}</p>
+  <p><strong>Origin:</strong> {{ character()!.origin.name }}</p>
+  <p><strong>Location:</strong> {{ character()!.location.name }}</p>
+  <p><strong>Cretated:</strong> {{ character()!.created | date }}</p>
+</nz-card>
+}

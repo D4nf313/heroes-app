@@ -35,7 +35,11 @@
         <td>{{ character.gender }}</td>
         <td>{{ character.status }}</td>
         <td>
-          <button nz-button nzType="primary" (click)="viewDetails(character.id)">
+          <button
+            nz-button
+            nzType="primary"
+            (click)="goToDetail(character.id)"
+          >
             Ver Detalle
           </button>
         </td>
