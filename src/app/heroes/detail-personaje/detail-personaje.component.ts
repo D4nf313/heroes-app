@@ -24,9 +24,11 @@ export class DetailPersonajeComponent {
 
     if (characterId) {
       // Aquí deberías usar el servicio para obtener los detalles del personaje
-      this.personajesService.getPersonajeById(+characterId).subscribe(data => {
-        this.character.set(data);
-      });
+      this.personajesService
+        .getPersonajeById(+characterId)
+        .subscribe((data) => {
+          this.character.set(data);
+        });
     }
   }
 }

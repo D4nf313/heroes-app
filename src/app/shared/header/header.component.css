@@ -8,3 +8,14 @@
 }
 
 
+/* Estilos para el logo en el header */
+.logo {
+  font-size: 25px; /* Tamaño de la fuente grande */
+  font-weight: bold; /* Negrita para resaltar */
+  color: #00bcd4; /* Color llamativo (puedes ajustarlo) */
+  text-align: center; /* Centra el texto */
+  margin-top: 20px; /* Espacio por encima del logo */
+  margin-bottom: 20px; /* Espacio por debajo */
+  text-transform: uppercase; /* Hace que todo el texto sea en mayúsculas */
+  letter-spacing: 2
+}

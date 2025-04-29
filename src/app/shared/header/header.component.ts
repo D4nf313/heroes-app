@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -10,7 +11,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  private router = inject(Router);
   logout(): void {
-    console.log('Sesión cerrada');
+    this.router.navigate(['login']);
   }
 }

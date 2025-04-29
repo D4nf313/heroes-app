@@ -3,8 +3,6 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { ApiResponse, CharacterSimple } from '../personajes.interface';
 import { mapToSimpleCharacters } from '../mapper-pj';
 import {
-  NzTableFilterFn,
-  NzTableFilterList,
   NzTableModule,
   NzTableSortFn,
   NzTableSortOrder,
@@ -14,6 +12,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Router, RouterLink } from '@angular/router';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 interface ColumnItem {
   name: string;
@@ -28,6 +27,7 @@ interface ColumnItem {
     NzPaginationModule,
     NzButtonModule,
     NzIconModule,
+    NzEmptyModule,
   ],
   templateUrl: './personajes-list.component.html',
   styleUrl: './personajes-list.component.css',
@@ -68,17 +68,16 @@ export class PersonajesListComponent {
     this.pjService.getPersonajes(pagina).subscribe((data: ApiResponse) => {
       const personajesReducidos = mapToSimpleCharacters(data.results);
       this.listOfData.set(personajesReducidos);
-      this.total.set(data.info.count); // Actualiza el total usando signal
+      this.total.set(data.info.count);
     });
   }
 
   onPageIndexChange(pageIndex: number): void {
-    this.currentPage.set(pageIndex); // Actualiza la página actual
-    this.getPersonajes(pageIndex); // Carga los personajes de la nueva página
+    this.currentPage.set(pageIndex);
+    this.getPersonajes(pageIndex);
   }
 
   sortByName(): void {
-    // Cambiar el estado de la columna 'Name' para alternar entre ascendente y descendente
     this.listOfColumns().forEach((item) => {
       if (item.name === 'Name') {
         item.sortOrder = item.sortOrder === 'ascend' ? 'descend' : 'ascend';

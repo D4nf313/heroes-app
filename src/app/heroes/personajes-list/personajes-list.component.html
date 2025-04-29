@@ -1,9 +1,11 @@
 <div class="container">
   <h1>Bienvenido,</h1>
-  <p>Aqui puedes ver todos los personjaes de la serie Rick and Morty</p>
+  <p>Aqui puedes ver todos los personajes de la serie Rick and Morty</p>
+  @if (listOfData() && listOfData().length > 0) {
   <div class="table-operations">
     <button nz-button (click)="sortByName()">Sort by Name</button>
   </div>
+
   <nz-table
     #filterTable
     [nzData]="listOfData()"
@@ -36,6 +38,10 @@
           </button>
         </td>
       </tr>
-    </tbody>
-  </nz-table>
+    </tbody> </nz-table
+  >} @else {
+  <div class="empty-state">
+    <nz-empty nzNotFoundContent="No hay datos disponibles"></nz-empty>
+  </div>
+  }
 </div>
