@@ -13,14 +13,12 @@ import { CommonModule } from '@angular/common';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { Router, RouterLink} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface ColumnItem {
   name: string;
   sortOrder: NzTableSortOrder | null;
   sortFn: NzTableSortFn<CharacterSimple> | null;
-  listOfFilter: NzTableFilterList;
-  filterFn: NzTableFilterFn<CharacterSimple> | null;
 }
 @Component({
   selector: 'personajes-list',
@@ -30,7 +28,6 @@ interface ColumnItem {
     NzPaginationModule,
     NzButtonModule,
     NzIconModule,
-    RouterLink
   ],
   templateUrl: './personajes-list.component.html',
   styleUrl: './personajes-list.component.css',
@@ -45,33 +42,24 @@ export class PersonajesListComponent {
     {
       name: 'Name',
       sortOrder: null,
-      sortFn: (a: CharacterSimple, b: CharacterSimple) => a.name.localeCompare(b.name),
-      listOfFilter: [],  // Sin filtros
-      filterFn: null,    // Sin función de filtro
+      sortFn: (a, b) => a.name.localeCompare(b.name),
     },
     {
       name: 'Species',
       sortOrder: null,
-      sortFn: (a: CharacterSimple, b: CharacterSimple) => a.species.localeCompare(b.species),
-      listOfFilter: [],  // Sin filtros
-      filterFn: null,    // Sin función de filtro
+      sortFn: (a, b) => a.species.localeCompare(b.species),
     },
     {
       name: 'Gender',
       sortOrder: null,
-      sortFn: (a: CharacterSimple, b: CharacterSimple) => a.gender.localeCompare(b.gender),
-      listOfFilter: [],  // Sin filtros
-      filterFn: null,    // Sin función de filtro
+      sortFn: (a, b) => a.gender.localeCompare(b.gender),
     },
     {
       name: 'Status',
       sortOrder: null,
-      sortFn: (a: CharacterSimple, b: CharacterSimple) => a.status.localeCompare(b.status),
-      listOfFilter: [],  // Sin filtros
-      filterFn: null,    // Sin función de filtro
-    }
+      sortFn: (a, b) => a.status.localeCompare(b.status),
+    },
   ]);
-
 
   ngOnInit(): void {
     this.getPersonajes(this.currentPage());
@@ -108,31 +96,7 @@ export class PersonajesListComponent {
     this.listOfData.set(sortedData);
   }
 
-  resetFilters(): void {
-    // Restablecer los filtros de todas las columnas
-    this.listOfColumns().forEach((item) => {
-      item.listOfFilter = [];
-    });
-
-    // Opcionalmente, actualizar los datos si los filtros afectan la tabla.
-    this.listOfData.set([...this.listOfData()]); // Actualizar los datos si es necesario
-  }
-
-  resetSortAndFilters(): void {
-    // Restablecer el orden de las columnas y los filtros
-    this.listOfColumns().forEach((item) => {
-      item.sortOrder = null;
-      item.listOfFilter = [];
-    });
-
-    // Opcionalmente, actualizar los datos si el sort o los filtros afectan la tabla.
-    this.listOfData.set([...this.listOfData()]); // Actualizar los datos si es necesario
-  }
-
   goToDetail(characterId: number): void {
     this.router.navigate(['personajes/detail', characterId]);
   }
-
-
-
 }

@@ -3,10 +3,6 @@
   <p>Aqui puedes ver todos los personjaes de la serie Rick and Morty</p>
   <div class="table-operations">
     <button nz-button (click)="sortByName()">Sort by Name</button>
-    <button nz-button (click)="resetFilters()">Clear filters</button>
-    <button nz-button (click)="resetSortAndFilters()">
-      Clear filters and sorters
-    </button>
   </div>
   <nz-table
     #filterTable
@@ -35,11 +31,7 @@
         <td>{{ character.gender }}</td>
         <td>{{ character.status }}</td>
         <td>
-          <button
-            nz-button
-            nzType="primary"
-            (click)="goToDetail(character.id)"
-          >
+          <button nz-button nzType="primary" (click)="goToDetail(character.id)">
             Ver Detalle
           </button>
         </td>
