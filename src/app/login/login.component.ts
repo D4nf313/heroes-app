@@ -1,10 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { LoginService } from '../services/login.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +23,15 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzInputModule,
     NzButtonModule,
     NzCardModule,
-    RecaptchaModule
+    RecaptchaModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
   private fb = inject(FormBuilder);
-
+  private loginService = inject(LoginService);
+  private alertService = inject(AlertService);
   loginForm!: FormGroup;
   recaptchaCompleted = signal(false);
   recaptchaToken = signal<string | null>(null);
@@ -36,21 +44,30 @@ export class LoginComponent {
   }
   onCaptchaResolved(token: string | null) {
     if (token) {
-      console.log('reCAPTCHA resuelto con token:', token);
       this.recaptchaCompleted.set(true);
       this.recaptchaToken.set(token);
     } else {
-      console.log('reCAPTCHA falló o expiró');
       this.recaptchaCompleted.set(false);
       this.recaptchaToken.set(null);
     }
   }
   onSubmit() {
+    const username = this.loginForm.get('username')?.value;
+    const password = this.loginForm.get('password')?.value;
     if (this.loginForm.invalid || !this.recaptchaCompleted()) {
-      console.log('Formulario inválido o captcha no resuelto');
+      this.alertService.showToast('Usuario o contraseña incorrectos');
       return;
     }
+    this.loginService
+      .validateLogin(username, password)
+      .subscribe((isValidate: boolean) => {
+        if (isValidate) {
+          this.alertService.showToast('Inicio de sesión exitoso');
 
-    console.log('Formulario enviado:', this.loginForm.value, 'Token:', this.recaptchaToken);
+
+
+        }
+      });
+ 
   }
 }
